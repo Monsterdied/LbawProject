@@ -13,11 +13,11 @@
     You have requested to reset your password. Please click the link below to reset your password.
 </p>
 
-  <a sytle="display: flex;
+<a style="display: flex !important;
     color: white !important;
-    width: 20em;
-    justify-content: space-evenly;
-    align-items: center;" class="button button-primary" href="{{ route('reset', ['token' => $user->remember_token]) }}">Reset Password</a>
+    width: 20em !important;
+    justify-content: space-evenly !important;
+    align-items: center !important;" class="button button-primary" href="{{ route('reset', ['token' => $user->remember_token]) }}">Reset Password</a>
 </div>
 
 @endsection
