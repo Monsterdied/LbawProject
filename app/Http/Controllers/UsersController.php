@@ -21,7 +21,7 @@ class UsersController extends Controller
                 return response()->json($results);
             }
             if($searchBy === 'relevance'){
-                $results = User::whereRaw("tsvectors @@ plainto_tsquery(?)", [$query])
+                $results = User::whereFullText('username',$query)->orWhereFullText('name',$query)
                 ->orderByRaw("ts_rank(tsvectors, plainto_tsquery(?)) DESC", [$query])
                 ->where('name','<>','Deleted')->paginate(15)->withQueryString()->withQueryString();
                 return response()->json($results);

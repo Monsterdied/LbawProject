@@ -257,7 +257,7 @@ class TagController extends Controller
                 'question.id'
             )
             ->where('questiontag.tag_id', '=', $tag_id)
-            ->whereRaw("question.tsvectors @@ plainto_tsquery(?)", [$query])
+            ->whereFullText('question.title',$query)
             ->where('content.deleted', '=', false)
             ->groupBy(
                 'question.tsvectors',
@@ -304,7 +304,7 @@ class TagController extends Controller
                 'question.id'
             )
             ->where('questiontag.tag_id', '=', $tag_id)
-            ->whereRaw("question.tsvectors @@ plainto_tsquery(?)", [$query])
+            ->whereFullText('question.title',$query)
             ->where('content.deleted', '=', false)
             ->groupBy(
                 'question.title',

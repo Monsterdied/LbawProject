@@ -98,7 +98,7 @@ class SearchQuestionController extends Controller
                 '=',
                 'question.id'
             )
-            ->whereRaw("question.tsvectors @@ plainto_tsquery(?)", [$query])
+            ->whereFullText('question.title',$query)
             ->where('content.deleted', '=', false)
             ->groupBy(
                 'question.correct_answer_id',
@@ -144,7 +144,7 @@ class SearchQuestionController extends Controller
                 '=',
                 'question.id'
             )
-            ->whereRaw("question.tsvectors @@ plainto_tsquery(?)", [$query])
+            ->whereFullText('question.title',$query)
             ->where('content.deleted', '=', false)
             ->groupBy(
                 'question.correct_answer_id',
